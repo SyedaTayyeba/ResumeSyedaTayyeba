@@ -3,125 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <title>Syeda Tayyeba Resume</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 40px 20px;
       display: flex;
       justify-content: center;
-      padding-top: 50px;
     }
-    button {
-      padding: 12px 20px;
-      background-color: #0077cc;
-      border: none;
-      color: white;
+
+    .resume {
+      background: white;
+      max-width: 800px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    .resume h1 {
+      font-size: 32px;
+      color: #004080;
+      margin-bottom: 5px;
+    }
+
+    .resume h2 {
+      font-size: 20px;
+      color: #666;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h3 {
+      color: #0077cc;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .section ul {
+      padding-left: 20px;
+    }
+
+    .contact, .linkedin {
+      font-size: 14px;
+      color: #444;
+      margin: 5px 0;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .subheading {
       font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #005fa3;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <button onclick="generateCV()">Download Resume (PDF)</button>
+  <div class="resume">
+    <h1>Syeda Tayyeba</h1>
+    <h2>Frontend Developer</h2>
+    <p class="contact">Lahore, Pakistan | syedatayyeba78@gmail.com | 03094100215</p>
+    <p class="linkedin"><a href="https://www.linkedin.com/in/syeda-tayyeba-6a665632b" target="_blank">LinkedIn Profile</a></p>
 
-  <script>
-    const generateCV = async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const margin = 15;
-      let y = margin;
+    <div class="section">
+      <h3>Professional Summary</h3>
+      <p>
+        Motivated and detail-oriented Frontend Developer with a strong foundation in web technologies and UI development.
+        Experienced in creating responsive, user-friendly websites using modern frameworks like React and Bootstrap.
+        Passionate about crafting clean, maintainable code and continuously learning new tools to improve user experience.
+        Recently completed a hands-on internship where I contributed to multiple real-world web projects.
+      </p>
+    </div>
 
-      const headingColor = [0, 102, 204];
-      const sectionLineColor = [200, 200, 200];
-      const linkColor = [0, 0, 255];
+    <div class="section">
+      <h3>Technical Skills</h3>
+      <ul>
+        <li><span class="bold">Languages:</span> HTML, CSS, JavaScript, C++, OOP, DBMS</li>
+        <li><span class="bold">Frameworks:</span> React, Bootstrap, Material UI (MUI)</li>
+        <li><span class="bold">Tools:</span> Git, VS Code, Chrome DevTools</li>
+        <li><span class="bold">Other:</span> Responsive Design, Cross-Browser Compatibility, UI/UX Basics</li>
+      </ul>
+    </div>
 
-      const drawLine = () => {
-        doc.setDrawColor(...sectionLineColor);
-        doc.line(margin, y, 200, y);
-        y += 5;
-      };
+    <div class="section">
+      <h3>Experience</h3>
+      <p class="subheading bold">Frontend Intern — TecJaunt</p>
+      <p>Lahore, Pakistan (Jan 2025 – April 2025)</p>
+      <ul>
+        <li>Built and maintained multiple responsive websites using HTML, CSS, and React.</li>
+        <li>Converted design mockups into functional UI using Bootstrap and MUI.</li>
+        <li>Focused on clean code, mobile responsiveness, and performance.</li>
+        <li>Worked closely with senior developers in an agile environment.</li>
+      </ul>
+    </div>
 
-      const addHeading = (title) => {
-        doc.setTextColor(...headingColor);
-        doc.setFont('Helvetica', 'bold');
-        doc.setFontSize(13);
-        doc.text(title, margin, y);
-        y += 8;
-        drawLine();
-        doc.setTextColor(0, 0, 0);
-      };
+    <div class="section">
+      <h3>Projects</h3>
+      <p class="subheading bold">Responsive Website Collection</p>
+      <p>
+        Built multiple fully responsive websites during internship using HTML, CSS, and React.
+        Focused on clean layouts, interactive UI components, and modern design principles.
+        Implemented performance optimization techniques and accessibility best practices.
+      </p>
+    </div>
 
-      const addText = (text, size = 11, font = 'normal') => {
-        doc.setFontSize(size);
-        doc.setFont('Helvetica', font);
-        const lines = doc.splitTextToSize(text, 180);
-        doc.text(lines, margin, y);
-        y += lines.length * 6 + 3;
-      };
-
-      // === HEADER ===
-      doc.setFontSize(16);
-      doc.setFont("Helvetica", "bold");
-      doc.setTextColor(0, 0, 0);
-      doc.text("Syeda Tayyeba", margin, y);
-      y += 8;
-
-      doc.setFontSize(12);
-      doc.setFont("Helvetica", "normal");
-      doc.text("Frontend Developer", margin, y);
-      y += 8;
-
-      addText("Lahore, Pakistan  |   syedatayyeba78@gmail.com  |   03094100215");
-
-      const linkedInUrl = "https://www.linkedin.com/in/syeda-tayyeba-6a665632b";
-      doc.setTextColor(...linkColor);
-      doc.textWithLink("LinkedIn: www.linkedin.com/in/syeda-tayyeba-6a665632b", margin, y, { url: linkedInUrl });
-      y += 10;
-      doc.setTextColor(0, 0, 0); // Reset text color
-
-      // === SUMMARY ===
-      addHeading("Professional Summary");
-      addText(`Motivated and detail-oriented Frontend Developer with a strong foundation in web technologies and UI development. 
-Experienced in creating responsive, user-friendly websites using modern frameworks like React and Bootstrap. 
-Passionate about crafting clean, maintainable code and continuously learning new tools to improve user experience. 
-Recently completed a hands-on internship where I contributed to multiple real-world web projects.`);
-
-      // === SKILLS ===
-      addHeading("Technical Skills");
-      addText(`Languages: HTML, CSS, JavaScript, C++, OOP, DBMS
-Frameworks: React, Bootstrap, Material UI (MUI)
-Tools: Git, VS Code, Chrome DevTools
-Other: Responsive Design, Cross-Browser Compatibility, UI/UX Basics`);
-
-      // === EXPERIENCE ===
-      addHeading("Experience");
-      addText("Frontend Intern\nTecJaunt — Lahore, Pakistan (Jan 2025 – April 2025)", 12, "bold");
-      addText(`- Built and maintained multiple responsive websites using HTML, CSS, and React.
-- Converted design mockups into functional UI using Bootstrap and MUI.
-- Focused on clean code, mobile responsiveness, and performance.
-- Worked closely with senior developers in an agile environment.`);
-
-      // === PROJECTS ===
-      addHeading("Projects");
-      addText("Responsive Website Collection", 12, "bold");
-      addText(`Built multiple fully responsive websites during internship using HTML, CSS, and React. 
-Focused on clean layouts, interactive UI components, and modern design principles. 
-Implemented performance optimization techniques and accessibility best practices.`);
-
-      // === EDUCATION ===
-      addHeading("Education");
-      addText(`BS in Information Technology (BSIT)
-Virtual University of Pakistan
-Currently Enrolled : 6th Semester
-Expected Graduation: 2026`);
-
-      // === SAVE PDF ===
-      doc.save("Syeda_Tayyeba_Resume.pdf");
-    };
-  </script>
+    <div class="section">
+      <h3>Education</h3>
+      <p class="subheading bold">BS in Information Technology (BSIT)</p>
+      <p>Virtual University of Pakistan</p>
+      <p>Currently Enrolled: 6th Semester</p>
+      <p>Expected Graduation: 2026</p>
+    </div>
+  </div>
 </body>
 </html>
